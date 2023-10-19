@@ -7,6 +7,7 @@
     <title>RomCom</title>
   </head>
   <body>
+    <!-- Header with Navigation Buttons -->
     <section class="controls">
       <button class="home-button hidden">Home</button>
       <button class="random-cover-button">Show New Random Cover</button>
@@ -14,17 +15,25 @@
       <button class="view-saved-button">View Saved Covers</button>
       <button class="make-new-button">Make Your Own Cover</button>
     </section>
+
     <section class="view home-view">
+      <h2 class="duplicate-message hidden"></h2>
       <section class="main-cover">
-        <img class="cover-image" src="./assets/prairie.jpg">
-        <h2 class="cover-title">Windswept Hearts</h2>
-        <h3 class="tagline">A tale of <span class="tagline-1">passion</span> and <span class="tagline-2">woe</span></h3>
+        <div class="cover">
+          <img class="cover-image" src="">
+          <h2 class="cover-title"></h2>
+          <h3 class="tagline">A tale of <span class="tagline-1"></span> and <span class="tagline-2"></span></h3>
+        </div>
         <img class="price-tag" src="./assets/price.png">
         <img class="overlay" src="./assets/overlay.png">
+        <img class="heart-icon" src="./assets/redheart.svg"/>
       </section>
     </section>
+
     <section class="view saved-view hidden">
-      <section class="saved-covers-section"></section>
+      <section class="saved-covers-section">
+
+      </section>
     </section>
     <section class="view form-view hidden">
       <form>

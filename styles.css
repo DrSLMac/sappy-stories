@@ -35,14 +35,29 @@ body {
 .controls > button:hover {
   background: #e07999;
   color: white;
+  cursor: pointer;
 }
 
 /* ~~~~~~~~~~~~~~ HOME ~~~~~~~~~~~~~~~~ */
+.duplicate-message {
+  text-align: center;
+}
+
 .main-cover {
   height: 80vh;
   margin: 4vh auto;
   position: relative;
-  width: 26vw;
+  /* width: 40vw; */
+    min-width: 38vw;
+    max-width: 40vw;
+}
+
+.cover {
+  height: 80vh;
+  margin: 4vh auto;
+  position: relative;
+  min-width: 38vw;
+    max-width: 40vw;
 }
 
 .cover-image,
@@ -96,6 +111,16 @@ body {
   mix-blend-mode: screen;
 }
 
+.heart-icon {
+  position: absolute;
+  height: 3rem;
+  fill-opacity: 1;
+  left: 5px;
+  top: 5px;
+  filter: drop-shadow(0 0 1rem rgb(255, 192, 232));
+  cursor: pointer;
+}
+
 /* ~~~~~~~~~~~~~ SAVED COVERS ~~~~~~~~~~~~~~~ */
 .saved-view {
   padding: 30px;
@@ -130,6 +155,12 @@ body {
   color: #fcf4dc;
   font-size: 10px;
   padding: 5px;
+}
+
+.mini-cover > .delete {
+  position: absolute;
+  top: 2;
+  left: 0;
 }
 
 /* ~~~~~~~~~~~~~ NEW COVER FORM ~~~~~~~~~~~~~~~ */
