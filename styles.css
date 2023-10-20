@@ -157,7 +157,7 @@ body {
   padding: 5px;
 }
 
-.mini-cover > .delete {
+.mini-cover > .delete-button {
   position: absolute;
   top: 2;
   left: 0;

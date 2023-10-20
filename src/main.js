@@ -171,17 +171,18 @@ function renderSavedCovers() {
   hide(duplicateMessage)
   savedCoversSection.innerHTML = ''
   for (var i = 0; i < savedCovers.length; i++) {
-    console.log("savedCovers in for loop", savedCovers[i])
+    // console.log("savedCovers in for loop", savedCovers[i])
     savedCoversSection.innerHTML += `
     <div class="mini-cover">
     <img class="mini-cover" src=${savedCovers[i].coverImg}>
-    <button class="delete">🗑️</button>
+    <button class="delete-button">🗑️</button>
     <h2 class="cover-title">${savedCovers[i].title}</h2>
     <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
     <img class="price-tag" src="./assets/price.png">
     <img class="overlay" src="./assets/overlay.png">
     </div>
     `
+
   }
 }
 
@@ -195,6 +196,13 @@ function viewSavedPage() {
   hide(showNewRandomBtn);
   hide(formView);
   renderSavedCovers()
+  // const deleteButtons = document.querySelectorAll(".delete-button")
+  // console.log("deleteButtons", deleteButtons)
+  // for (var i = 0; i < deleteButtons.length; i++) {
+  // deleteButtons[1].addEventListener("click", () => {
+  //   console.log("I was clicked")
+  // })
+  // }
 }
 
 // Functions for Make Your Own Cover Page
@@ -248,4 +256,9 @@ console.log("inputImage: ", inputImage.value)
   <h2 class="cover-title">${customCover.title}</h2>
   <h3 class="tagline">A tale of <span class="tagline-1">${customCover.tagline1}</span> and <span class="tagline-2">${customCover.tagline2}</span></h3>
   `);
+}
+
+function deleteFavorite() {
+  console.log("savedCovers: ", savedCovers)
+  // var unfavorite = e.target.closest('')
 }
