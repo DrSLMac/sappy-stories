@@ -19,7 +19,7 @@ const heartIcon = document.querySelector(".heart-icon");
 // Input fields
 const inputImage = document.querySelector(".user-cover");
 const inputTitle = document.querySelector(".user-title");
-const inputDesc1 = document.querySelector(".user-desc1")
+const inputDesc1 = document.querySelector(".user-desc1");
 const inputDesc2 = document.querySelector(".user-desc2");
 
 // Buttons
@@ -69,7 +69,7 @@ function createCover(imgSrc, title, descriptor1, descriptor2) {
 }
 
 function createRandomCover() {
-  hide(duplicateMessage)
+  hide(duplicateMessage);
   var randomCover = covers[getRandomIndex(covers)];
   var randomTitle = titles[getRandomIndex(titles)];
   var randomDescriptor1 = descriptors[getRandomIndex(descriptors)];
@@ -108,7 +108,7 @@ function goHome() {
 }
 
 function renderNewCover() {
-  hide(duplicateMessage)
+  hide(duplicateMessage);
   var randomCover = covers[getRandomIndex(covers)];
   var randomTitle = titles[getRandomIndex(titles)];
   var randomDescriptor1 = descriptors[getRandomIndex(descriptors)];
@@ -120,7 +120,6 @@ function renderNewCover() {
     randomDescriptor2
   );
 
-  console.log("newCover: ", newCover);
   coverImage.src = newCover.coverImg;
   coverTitle.innerText = newCover.title;
   tagline1.innerText = newCover.tagline1;
@@ -145,44 +144,75 @@ function saveCover() {
   };
 
   var duplicate = false;
-  
+
   for (var i = 0; i < savedCovers.length; i++) {
-    if (savedCovers[i].coverImg === currentCover.coverImg &&
+    if (
+      savedCovers[i].coverImg === currentCover.coverImg &&
       savedCovers[i].title === currentCover.title &&
       savedCovers[i].tagline1 === currentCover.tagline1 &&
       savedCovers[i].tagline2 === currentCover.tagline2
-      ) {
-        duplicateMessage.innerText = "This cover has already been saved 🫶🏼"
-        show(duplicateMessage)     
-        duplicate = true; 
-      }
-    }
-
-    if (!duplicate || !savedCovers.length) {
-      savedCovers.push(currentCover);
-      duplicateMessage.innerText = "Successfully saved as a favorite!"
+    ) {
+      duplicateMessage.innerText = "This cover has already been saved 🫶🏼";
       show(duplicateMessage);
+      duplicate = true;
     }
-    console.log("savedCovers: ", savedCovers);
-
+  }
+  if (!duplicate || !savedCovers.length) {
+    savedCovers.push(currentCover);
+    duplicateMessage.innerText = "Successfully saved as a favorite!";
+    show(duplicateMessage);
+  }
 }
 
 function renderSavedCovers() {
-  hide(duplicateMessage)
-  savedCoversSection.innerHTML = ''
-  for (var i = 0; i < savedCovers.length; i++) {
-    // console.log("savedCovers in for loop", savedCovers[i])
-    savedCoversSection.innerHTML += `
-    <div class="mini-cover">
-    <img class="mini-cover" src=${savedCovers[i].coverImg}>
-    <button class="delete-button">🗑️</button>
-    <h2 class="cover-title">${savedCovers[i].title}</h2>
-    <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
-    <img class="price-tag" src="./assets/price.png">
-    <img class="overlay" src="./assets/overlay.png">
-    </div>
-    `
+  hide(duplicateMessage);
+  savedCoversSection.innerHTML = "";
 
+  for (var i = 0; i < savedCovers.length; i++) {
+    const bookCover = savedCovers[i];
+
+    const miniCoverDiv = document.createElement("div");
+    miniCoverDiv.classList.add("mini-cover");
+
+    const img = document.createElement("img");
+    img.classList.add("mini-cover");
+    img.src = bookCover.coverImg;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.innerHTML = "🗑️";
+
+    const h2 = document.createElement("h2");
+    h2.classList.add("cover-title");
+    h2.textContent = bookCover.title;
+
+    const h3 = document.createElement("h3");
+    h3.classList.add("tagline");
+    h3.innerHTML = `A tale of <span class="tagline-1">${bookCover.tagline1}</span> and <span class="tagline-2">${bookCover.tagline2}</span>`;
+
+    const priceTag = document.createElement("img");
+    priceTag.classList.add("price-tag");
+    priceTag.src = "./assets/price.png";
+
+    const overlay = document.createElement("img");
+    overlay.classList.add("overlay");
+    overlay.src = "./assets/overlay.png";
+
+    deleteButton.addEventListener("click", () => {
+      // Remove the book cover from the array
+      savedCovers.splice(i - 1, 1);
+      // Re-render the covers after deletion
+      renderSavedCovers();
+    });
+
+    miniCoverDiv.appendChild(img);
+    miniCoverDiv.appendChild(deleteButton);
+    miniCoverDiv.appendChild(h2);
+    miniCoverDiv.appendChild(h3);
+    miniCoverDiv.appendChild(priceTag);
+    miniCoverDiv.appendChild(overlay);
+
+    savedCoversSection.appendChild(miniCoverDiv);
   }
 }
 
@@ -195,7 +225,7 @@ function viewSavedPage() {
   hide(saveCoverButton);
   hide(showNewRandomBtn);
   hide(formView);
-  renderSavedCovers()
+  renderSavedCovers();
   // const deleteButtons = document.querySelectorAll(".delete-button")
   // console.log("deleteButtons", deleteButtons)
   // for (var i = 0; i < deleteButtons.length; i++) {
@@ -207,7 +237,7 @@ function viewSavedPage() {
 
 // Functions for Make Your Own Cover Page
 function viewFormPage() {
-  resetForm()
+  resetForm();
 
   show(formView);
   show(homeButton);
@@ -220,18 +250,18 @@ function viewFormPage() {
 }
 
 function resetForm() {
-  inputImage.value = '';
-  inputTitle.value = '';
-  inputDesc1.value = '';
-  inputDesc2.value = '';
+  inputImage.value = "";
+  inputTitle.value = "";
+  inputDesc1.value = "";
+  inputDesc2.value = "";
 }
 
 function makeUserCover(event) {
   event.preventDefault();
-console.log("inputImage: ", inputImage.value)
-  console.log("title: ", inputTitle.value)
-  console.log("inputDesc1: ", inputDesc1.value)
-  console.log("inputDesc2: ", inputDesc2.value)
+  console.log("inputImage: ", inputImage.value);
+  console.log("title: ", inputTitle.value);
+  console.log("inputDesc1: ", inputDesc1.value);
+  console.log("inputDesc2: ", inputDesc2.value);
 
   var customCover = {
     id: Date.now(),
@@ -239,8 +269,8 @@ console.log("inputImage: ", inputImage.value)
     title: inputTitle.value,
     tagline1: inputDesc1.value,
     tagline2: inputDesc2.value,
-  }
-  console.log("customCover: ", customCover)
+  };
+  console.log("customCover: ", customCover);
   coverImage.src = customCover.coverImg;
   coverTitle.innerText = customCover.title;
   tagline1.innerText = customCover.tagline1;
@@ -249,16 +279,11 @@ console.log("inputImage: ", inputImage.value)
   cover.innerHTML = "";
   hide(formView);
   show(mainView);
-  show(saveCoverButton)
-  hide(duplicateMessage)
+  show(saveCoverButton);
+  hide(duplicateMessage);
   return (cover.innerHTML += `
   <img class="cover-image" src=${customCover.coverImg}>
   <h2 class="cover-title">${customCover.title}</h2>
   <h3 class="tagline">A tale of <span class="tagline-1">${customCover.tagline1}</span> and <span class="tagline-2">${customCover.tagline2}</span></h3>
   `);
-}
-
-function deleteFavorite() {
-  console.log("savedCovers: ", savedCovers)
-  // var unfavorite = e.target.closest('')
 }
