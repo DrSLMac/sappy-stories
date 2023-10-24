@@ -221,30 +221,20 @@ function viewSavedPage() {
   show(homeButton);
   show(makeNewButton);
   hide(mainView);
-  // hide(viewSavedButton)
   hide(saveCoverButton);
   hide(showNewRandomBtn);
   hide(formView);
   renderSavedCovers();
-  // const deleteButtons = document.querySelectorAll(".delete-button")
-  // console.log("deleteButtons", deleteButtons)
-  // for (var i = 0; i < deleteButtons.length; i++) {
-  // deleteButtons[1].addEventListener("click", () => {
-  //   console.log("I was clicked")
-  // })
-  // }
 }
 
 // Functions for Make Your Own Cover Page
 function viewFormPage() {
   resetForm();
-
   show(formView);
   show(homeButton);
   show(viewSavedButton);
   hide(savedView);
   hide(mainView);
-  // hide(makeNewButton)
   hide(showNewRandomBtn);
   hide(saveCoverButton);
 }
